@@ -1,0 +1,41 @@
+@model IReadOnlyList<SIMS.Web.Models.CourseEnrolmentRow>
+@{
+    ViewData["Title"] = "Register Course";
+}
+
+<h2>Register Course</h2>
+
+<table class="table table-striped">
+    <thead>
+        <tr><th>Code</th><th>Title</th><th>Credits</th><th>Seats</th><th></th></tr>
+    </thead>
+    <tbody>
+        @foreach (var row in Model)
+        {
+            var full = row.Enrolled >= row.Course.Capacity;
+            <tr>
+                <td>@row.Course.Code</td>
+                <td>@row.Course.Title</td>
+                <td>@row.Course.Credits</td>
+                <td>@row.Enrolled / @row.Course.Capacity</td>
+                <td>
+                    @if (row.AlreadyEnrolled)
+                    {
+                        <span class="badge bg-success">Enrolled</span>
+                    }
+                    else if (full)
+                    {
+                        <span class="badge bg-secondary">Full</span>
+                    }
+                    else
+                    {
+                        <form asp-action="RegisterCourse" method="post" class="d-inline">
+                            <input type="hidden" name="courseId" value="@row.Course.Id" />
+                            <button type="submit" class="btn btn-sm btn-primary">Enroll</button>
+                        </form>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

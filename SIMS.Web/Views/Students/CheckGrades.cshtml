@@ -1,0 +1,39 @@
+@model SIMS.Web.Models.StudentGradesViewModel
+@{
+    ViewData["Title"] = "My Grades";
+}
+
+<h2>My Grades</h2>
+
+@if (Model.Rows.Count == 0)
+{
+    <p>You are not enrolled in any courses yet.</p>
+}
+else
+{
+    <table class="table table-striped">
+        <thead>
+            <tr><th>Code</th><th>Title</th><th>Grade</th><th>Status</th></tr>
+        </thead>
+        <tbody>
+            @foreach (var row in Model.Rows)
+            {
+                <tr>
+                    <td>@row.CourseCode</td>
+                    <td>@row.CourseTitle</td>
+                    <td>@(row.Grade.HasValue ? row.Grade.Value.ToString("0.0") : "—")</td>
+                    <td>@row.Status</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    @if (Model.HasCompletedGrades)
+    {
+        <p class="lead">GPA (10-point scale): <strong>@Model.Gpa.ToString("0.00")</strong></p>
+    }
+    else
+    {
+        <p class="text-muted">No graded courses yet — GPA will appear once grades are submitted.</p>
+    }
+}

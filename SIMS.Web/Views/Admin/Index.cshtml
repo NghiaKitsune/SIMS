@@ -1,0 +1,15 @@
+@model SIMS.Application.InstitutionReport
+@{
+    ViewData["Title"] = "Admin Dashboard";
+}
+
+<div class="d-flex justify-content-between align-items-center">
+    <h2>Administrator Dashboard</h2>
+    <div>
+        <a asp-action="ManageStudents" class="btn btn-outline-secondary">Students</a>
+        <a asp-controller="Courses" asp-action="Index" class="btn btn-outline-secondary">Courses</a>
+        <a asp-action="ManageAccounts" class="btn btn-outline-secondary">Accounts</a>
+    </div>
+</div>
+
+<partial name="_InstitutionReport" model="Model" />

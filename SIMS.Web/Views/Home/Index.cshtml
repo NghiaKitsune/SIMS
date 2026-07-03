@@ -1,0 +1,35 @@
+@{
+    ViewData["Title"] = "Home";
+}
+
+<div class="p-4 mb-4 bg-light rounded-3">
+    <h1 class="display-5">Student Information Management System</h1>
+    <p class="lead">Manage students, courses, enrolments and grades. Sign in with the role-appropriate account.</p>
+    @if (!(User.Identity?.IsAuthenticated ?? false))
+    {
+        <a class="btn btn-primary" asp-controller="Account" asp-action="Login">Login</a>
+        <a class="btn btn-outline-secondary" asp-controller="Account" asp-action="Register">Register as Student</a>
+    }
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <h4>Seed accounts (first run)</h4>
+        <table class="table table-sm table-bordered">
+            <thead><tr><th>Role</th><th>Username</th><th>Password</th></tr></thead>
+            <tbody>
+                <tr><td>Administrator</td><td>admin</td><td>Admin@123</td></tr>
+                <tr><td>Faculty</td><td>jsmith</td><td>Faculty@123</td></tr>
+                <tr><td>Student</td><td>nvana</td><td>Student@123</td></tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-6">
+        <h4>Role capabilities</h4>
+        <ul>
+            <li><strong>Student</strong> — view profile, register courses, check grades.</li>
+            <li><strong>Faculty</strong> — view student results, submit grades, generate reports.</li>
+            <li><strong>Administrator</strong> — manage students, courses and accounts, generate reports.</li>
+        </ul>
+    </div>
+</div>

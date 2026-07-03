@@ -1,0 +1,30 @@
+@model SIMS.Application.InstitutionReport
+
+<div class="row mb-3">
+    <div class="col"><div class="card text-center"><div class="card-body"><h3>@Model.TotalStudents</h3><span class="text-muted">Students</span></div></div></div>
+    <div class="col"><div class="card text-center"><div class="card-body"><h3>@Model.TotalCourses</h3><span class="text-muted">Courses</span></div></div></div>
+    <div class="col"><div class="card text-center"><div class="card-body"><h3>@Model.TotalActiveEnrolments</h3><span class="text-muted">Active enrolments</span></div></div></div>
+</div>
+
+<table class="table table-striped">
+    <thead>
+        <tr><th>Code</th><th>Title</th><th>Enrolled</th><th>Capacity</th><th>Fill</th></tr>
+    </thead>
+    <tbody>
+        @foreach (var c in Model.Courses)
+        {
+            var pct = c.Capacity > 0 ? (int)Math.Round(100.0 * c.EnrolledCount / c.Capacity) : 0;
+            <tr>
+                <td>@c.CourseCode</td>
+                <td>@c.CourseTitle</td>
+                <td>@c.EnrolledCount</td>
+                <td>@c.Capacity</td>
+                <td>
+                    <div class="progress" style="min-width:6rem">
+                        <div class="progress-bar" role="progressbar" style="width:@pct%">@pct%</div>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

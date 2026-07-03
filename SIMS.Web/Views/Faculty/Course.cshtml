@@ -1,0 +1,40 @@
+@model SIMS.Web.Models.FacultyCourseViewModel
+@{
+    ViewData["Title"] = "Course Results";
+    var course = Model.SelectedCourse!;
+}
+
+<h2>@course.Code — @course.Title</h2>
+<a asp-action="Index" class="btn btn-link mb-2">&larr; Back to courses</a>
+
+@if (Model.Results.Count == 0)
+{
+    <p>No students enrolled in this course.</p>
+}
+else
+{
+    <table class="table table-striped">
+        <thead>
+            <tr><th>Student ID</th><th>Name</th><th>Current Grade</th><th>Status</th><th>Submit Grade</th></tr>
+        </thead>
+        <tbody>
+            @foreach (var row in Model.Results)
+            {
+                <tr>
+                    <td>@(row.Student?.StudentId ?? "?")</td>
+                    <td>@(row.Student?.Username ?? "?")</td>
+                    <td>@(row.Enrollment.Grade.HasValue ? row.Enrollment.Grade.Value.ToString("0.0") : "—")</td>
+                    <td>@row.Enrollment.Status</td>
+                    <td>
+                        <form asp-action="SubmitGrade" method="post" class="d-flex gap-2">
+                            <input type="hidden" name="enrollmentId" value="@row.Enrollment.Id" />
+                            <input type="hidden" name="courseId" value="@course.Id" />
+                            <input type="number" name="grade" step="0.1" min="0" max="10" class="form-control form-control-sm" style="width:6rem" required />
+                            <button type="submit" class="btn btn-sm btn-primary">Save</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

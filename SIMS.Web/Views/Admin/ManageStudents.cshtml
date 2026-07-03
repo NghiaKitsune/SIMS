@@ -1,0 +1,29 @@
+@model IReadOnlyList<SIMS.Domain.Student>
+@{
+    ViewData["Title"] = "Manage Students";
+}
+
+<h2>Manage Students</h2>
+
+<table class="table table-striped">
+    <thead>
+        <tr><th>Student ID</th><th>Username</th><th>Email</th><th>Academic Year</th><th></th></tr>
+    </thead>
+    <tbody>
+        @foreach (var s in Model)
+        {
+            <tr>
+                <td>@s.StudentId</td>
+                <td>@s.Username</td>
+                <td>@s.Email</td>
+                <td>@s.AcademicYear</td>
+                <td>
+                    <form asp-action="DeleteStudent" asp-route-id="@s.Id" method="post" class="d-inline"
+                          onsubmit="return confirm('Delete @s.Username?');">
+                        <button type="submit" class="btn btn-sm btn-outline-danger">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

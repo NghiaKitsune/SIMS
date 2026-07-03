@@ -1,0 +1,17 @@
+@model SIMS.Domain.Student
+@{
+    ViewData["Title"] = "My Profile";
+}
+
+<h2>My Profile</h2>
+
+<table class="table table-bordered w-auto">
+    <tr><th>Username</th><td>@Model.Username</td></tr>
+    <tr><th>Email</th><td>@Model.Email</td></tr>
+    <tr><th>Student ID</th><td>@Model.StudentId</td></tr>
+    <tr><th>Academic Year</th><td>@Model.AcademicYear</td></tr>
+    <tr><th>Role</th><td>@Model.Role</td></tr>
+</table>
+
+<a asp-action="RegisterCourse" class="btn btn-primary">Register a course</a>
+<a asp-action="CheckGrades" class="btn btn-outline-secondary">Check grades</a>

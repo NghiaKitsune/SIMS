@@ -1,0 +1,53 @@
+@model SIMS.Web.Models.ManageAccountsViewModel
+@{
+    ViewData["Title"] = "Manage Accounts";
+}
+
+<h2>Manage Accounts</h2>
+
+<div class="row">
+    <div class="col-md-6">
+        <h4>Faculty</h4>
+        <table class="table table-sm table-striped">
+            <thead><tr><th>Username</th><th>Employee ID</th><th>Department</th></tr></thead>
+            <tbody>
+                @foreach (var f in Model.Faculty)
+                {
+                    <tr><td>@f.Username</td><td>@f.EmployeeId</td><td>@f.Department</td></tr>
+                }
+            </tbody>
+        </table>
+
+        <h5>Add faculty</h5>
+        <form asp-action="CreateFaculty" method="post">
+            <div class="mb-2"><input name="Username" class="form-control" placeholder="Username" required /></div>
+            <div class="mb-2"><input name="Email" type="email" class="form-control" placeholder="Email" required /></div>
+            <div class="mb-2"><input name="Password" type="password" class="form-control" placeholder="Password" required /></div>
+            <div class="mb-2"><input name="EmployeeId" class="form-control" placeholder="Employee ID" required /></div>
+            <div class="mb-2"><input name="Department" class="form-control" placeholder="Department" required /></div>
+            <button type="submit" class="btn btn-primary">Create faculty</button>
+        </form>
+    </div>
+
+    <div class="col-md-6">
+        <h4>Administrators</h4>
+        <table class="table table-sm table-striped">
+            <thead><tr><th>Username</th><th>Email</th><th>Level</th></tr></thead>
+            <tbody>
+                @foreach (var a in Model.Administrators)
+                {
+                    <tr><td>@a.Username</td><td>@a.Email</td><td>@a.AdminLevel</td></tr>
+                }
+            </tbody>
+        </table>
+
+        <h5>Add administrator</h5>
+        <form asp-action="CreateAdministrator" method="post">
+            <div class="mb-2"><input name="Username" class="form-control" placeholder="Username" required /></div>
+            <div class="mb-2"><input name="Email" type="email" class="form-control" placeholder="Email" required /></div>
+            <div class="mb-2"><input name="Password" type="password" class="form-control" placeholder="Password" required /></div>
+            <div class="mb-2"><input name="AdminLevel" class="form-control" placeholder="Admin level" value="Standard" /></div>
+            <button type="submit" class="btn btn-primary">Create administrator</button>
+        </form>
+    </div>
+</div>

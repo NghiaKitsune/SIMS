@@ -1,0 +1,7 @@
+<Solution>
+  <Project Path="SIMS.Application/SIMS.Application.csproj" />
+  <Project Path="SIMS.Domain/SIMS.Domain.csproj" />
+  <Project Path="SIMS.Infrastructure/SIMS.Infrastructure.csproj" />
+  <Project Path="SIMS.Tests/SIMS.Tests.csproj" />
+  <Project Path="SIMS.Web/SIMS.Web.csproj" />
+</Solution>
