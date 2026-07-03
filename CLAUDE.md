@@ -38,6 +38,10 @@ dotnet run --project SIMS.Web                            # run the app
 
 Test convention follows the course (`../../Labs/Lab5/.../PaymentServiceTests.cs`): xUnit `[Fact]`/`[Theory]`+`InlineData`, Moq `Mock<T>` / `mock.Verify(...)`.
 
+## Git
+
+This directory (`ASM/SIMS/`) is its own git repo (not nested inside `btec-skills`), pushed to **https://github.com/NghiaKitsune/SIMS** (private), branch `main`. `.gitignore` excludes `bin/`, `obj/`, `TestResults/`, and `SIMS.Web/App_Data/` (runtime CSV data — reseeds via `DataSeeder` on next run, never commit it). Initial commit `8d52bfd` covers Setup+M1+M2+M3 (147 files). Commit M4 separately when tests land.
+
 ## Seed accounts (created on first run by `DataSeeder`)
 
 - Administrator — `admin` / `Admin@123`
